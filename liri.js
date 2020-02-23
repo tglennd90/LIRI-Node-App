@@ -45,13 +45,39 @@ var writeToLog = function(data) {
 
 // Helper function that gets the artist name
 var getArtistNames = function(artist) {
-  return artist.name;
+
+
+  var artist = process.argv[3];
+
+  var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+
+  axios.get(queryUrl).then(
+    function(response) {
+      console.log(response.data);
+
+      for (let i = 0; i < 4; i++) {
+        var name = response.data[i].venue.name;
+        var location = response.data[i].venue.city + ", " + response.data[i].venue.region;
+        var date = response.data[i].datetime;
+
+        var newDate = moment(date).format("MM/DD/YYYY")
+
+        console.log(name);
+        console.log(location);
+        console.log(newDate);
+        console.log("===================");
+      }
+    })
+
 };
 
 // Function for running a Spotify search
 var getMeSpotify = function(songName) {
+
+    songName = process.argv[3];
+
   if (songName === undefined) {
-    songName = "What's my age again";
+    songName = "Wham Bam Shang-A-Lang";
   }
 
   /** TODO: Write the code to exceute the command below. 
@@ -76,7 +102,16 @@ var getMeSpotify = function(songName) {
     * The Spotify API requires you sign up as a developer to generate the necessary credentials. You can follow these steps in order to generate a client id and client secret:
 
   */
-  spotify.search();
+  spotify.search({ type: 'track', query: songName, limit: 1 })
+  .then(function(response) {
+    console.log(response.tracks.items[0].artists[0].name);
+    console.log(response.tracks.items[0].name);
+    console.log(response.tracks.items[0].external_urls.spotify);
+    console.log(response.tracks.items[0].album.name);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 };
 
 // Function for concert search
@@ -172,7 +207,16 @@ var doWhatItSays = function() {
 var pick = function(command, commandData) {
       //TODO:  Write your code below
       // This will be the main function to control which method to call. See function "runThis" is calling this pick method
+    command = process.argv[2];
+    commandData = process.argv[3];
 
+    if (command === 'spotify-this-song') {
+        getMeSpotify(commandData)
+    }
+
+    if (command === 'concert-this') {
+        getArtistNames(commandData)
+    }
  
 };
 
