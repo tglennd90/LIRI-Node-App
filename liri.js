@@ -204,7 +204,7 @@ var doWhatItSays = function() {
     
 
     var dataArr = data.split(",");
-    
+    console.log(dataArr)
     if (dataArr.length === 2) {
       pick(dataArr[0], dataArr[1]);
     }
@@ -212,7 +212,6 @@ var doWhatItSays = function() {
       pick(dataArr[0]);
     }
 
-    childCommand(dataArr[0], dataArr[1])
   });
 };
 
