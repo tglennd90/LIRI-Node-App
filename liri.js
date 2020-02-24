@@ -53,7 +53,7 @@ var getArtistNames = function(artist) {
 
   axios.get(queryUrl).then(
     function(response) {
-      console.log(response.data);
+      
 
       for (let i = 0; i < 4; i++) {
         var name = response.data[i].venue.name;
@@ -171,18 +171,29 @@ var getMyBands = function(artist) {
   */
 // Function for running a Movie Search
 var getMeMovie = function(movieName) {
+    movieName = process.argv[3]
+
   if (movieName === undefined) {
-    movieName = "Mr Nobody";
+    movieName = "The Mask";
   }
 
   //FIXME: 
-  var urlHit = "CREATE-THE-URL-HERE";
+  var urlHit = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
   axios.get(urlHit).then(
     function(response) {
       var jsonData = response.data;
 
       //FIXME: Finish the code below
+
+      console.log(jsonData.Title)
+      console.log(jsonData.Year)
+      console.log(jsonData.Ratings[0].Value)
+      console.log(jsonData.Ratings[1].Value)
+      console.log(jsonData.Country)
+      console.log(jsonData.Language)
+      console.log(jsonData.Plot)
+      console.log(jsonData.Actors)
     }
   );
 };
@@ -190,16 +201,18 @@ var getMeMovie = function(movieName) {
 // Function for running a command based on text file
 var doWhatItSays = function() {
   fs.readFile("random.txt", "utf8", function(error, data) {
-    console.log(data);
+    
 
     var dataArr = data.split(",");
-
+    
     if (dataArr.length === 2) {
       pick(dataArr[0], dataArr[1]);
     }
     else if (dataArr.length === 1) {
       pick(dataArr[0]);
     }
+
+    childCommand(dataArr[0], dataArr[1])
   });
 };
 
@@ -216,6 +229,14 @@ var pick = function(command, commandData) {
 
     if (command === 'concert-this') {
         getArtistNames(commandData)
+    }
+
+    if (command === 'movie-this') {
+        getMeMovie(commandData)
+    }
+
+    if (command === 'do-what-it-says') {
+        doWhatItSays()
     }
  
 };
