@@ -47,7 +47,7 @@ var writeToLog = function(data) {
 var getArtistNames = function(artist) {
 
 
-  var artist = process.argv[3];
+  
 
   var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
@@ -74,7 +74,7 @@ var getArtistNames = function(artist) {
 // Function for running a Spotify search
 var getMeSpotify = function(songName) {
 
-    songName = process.argv[3];
+    
 
   if (songName === undefined) {
     songName = "Wham Bam Shang-A-Lang";
@@ -171,7 +171,7 @@ var getMyBands = function(artist) {
   */
 // Function for running a Movie Search
 var getMeMovie = function(movieName) {
-    movieName = process.argv[3]
+    
 
   if (movieName === undefined) {
     movieName = "The Mask";
@@ -201,10 +201,10 @@ var getMeMovie = function(movieName) {
 // Function for running a command based on text file
 var doWhatItSays = function() {
   fs.readFile("random.txt", "utf8", function(error, data) {
-    
+    console.log(data)
 
     var dataArr = data.split(",");
-    console.log(dataArr)
+    
     if (dataArr.length === 2) {
       pick(dataArr[0], dataArr[1]);
     }
@@ -219,23 +219,23 @@ var doWhatItSays = function() {
 var pick = function(command, commandData) {
       //TODO:  Write your code below
       // This will be the main function to control which method to call. See function "runThis" is calling this pick method
-    command = process.argv[2];
-    commandData = process.argv[3];
+    
 
-    if (command === 'spotify-this-song') {
-        getMeSpotify(commandData)
-    }
-
-    if (command === 'concert-this') {
-        getArtistNames(commandData)
-    }
-
-    if (command === 'movie-this') {
-        getMeMovie(commandData)
-    }
-
-    if (command === 'do-what-it-says') {
-        doWhatItSays()
+    switch(command) {
+      case 'spotify-this-song':
+        getMeSpotify(commandData);
+        break;
+      case 'concert-this':
+        getArtistNames(commandData);
+        break;
+      case 'movie-this':
+        getMeMovie(commandData);
+        break;
+      case 'do-what-it-says':
+        doWhatItSays();
+        break;
+      default:
+        console.log("Woah man, somethin' aint right here");
     }
  
 };
