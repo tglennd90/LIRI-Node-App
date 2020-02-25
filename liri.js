@@ -46,16 +46,32 @@ var getMeSpotify = function(songName) {
 };
 
 // Function for concert search
-var getConcertList = function(artist) {
+var getMyBands = function(artist) {
 
   var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
   axios.get(queryUrl).then(
+
     function(response) {
+
+      var jsonData = response.data;
+
+      if (!jsonData.length) {
+        console.log("No results found for " + artist);
+        return;
+      }
+
+      var logData = [];
+
+      logData.push("Upcoming concerts for " + artist + ":");
+
+      console.log(logData);
+      console.log(" ");
+
       for (let i = 0; i < 4; i++) {
-        var name = response.data[i].venue.name;
-        var location = response.data[i].venue.city + ", " + response.data[i].venue.region;
-        var date = response.data[i].datetime;
+        var name = jsonData[i].venue.name;
+        var location = jsonData[i].venue.city + ", " + jsonData[i].venue.region;
+        var date = jsonData[i].datetime;
 
         var newDate = moment(date).format("MM/DD/YYYY")
 
@@ -64,7 +80,9 @@ var getConcertList = function(artist) {
         console.log(newDate);
         console.log("===================");
       }
-    })
+    }).catch(function(err) {
+      console.log(err);
+    });
 
 };
 
@@ -90,7 +108,9 @@ var getMeMovie = function(movieName) {
       console.log(jsonData.Plot)
       console.log(jsonData.Actors)
     }
-  );
+  ).catch(function(err) {
+    console.log(err);
+  });
 
 };
 
@@ -121,7 +141,7 @@ var pick = function(command, commandData) {
         getMeSpotify(commandData);
         break;
       case 'concert-this':
-        getConcertList(commandData);
+        getMyBands(commandData);
         break;
       case 'movie-this':
         getMeMovie(commandData);
