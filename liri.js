@@ -48,6 +48,11 @@ var getMeSpotify = function(songName) {
 // Function for concert search
 var getMyBands = function(artist) {
 
+  // if (artist === undefined) {
+  //   console.log("No results found for " + artist);
+  //   return;
+  // }
+
   var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
   axios.get(queryUrl).then(
@@ -61,11 +66,8 @@ var getMyBands = function(artist) {
         return;
       }
 
-      var logData = [];
 
-      logData.push("Upcoming concerts for " + artist + ":");
-
-      console.log(logData);
+      console.log("Upcoming concerts for " + artist + ":");
       console.log(" ");
 
       for (let i = 0; i < 4; i++) {
@@ -135,6 +137,9 @@ var doWhatItSays = function() {
 
 // Function for determining which command is executed
 var pick = function(command, commandData) {
+
+  command = process.argv[2];
+  commandData = process.argv[3];
 
     switch(command) {
       case 'spotify-this-song':
