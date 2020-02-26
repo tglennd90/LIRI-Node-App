@@ -43,10 +43,10 @@ Node.js Homework Assignment
 
     Video Demonstration: https://drive.google.com/file/d/1MWkuWMWUH6F0sVUi3ToRsK_YifhdBxOD/view
 
-    ![Alt text](/img1.png?raw=true)
-    ![Alt text](/img2.png?raw=true)
-    ![Alt text](/img3.png?raw=true)
-    ![Alt text](/img4.png?raw=true)
+    ![alt text](https://raw.githubusercontent.com/tglennd90/LIRI-Node-App/img1.png)
+    ![Alt img](/img2.png?raw=true)
+    ![Alt img](/img3.png?raw=true)
+    ![Alt img](/img4.png?raw=true)
 
 
 4.Clearly list the technologies used in the app
