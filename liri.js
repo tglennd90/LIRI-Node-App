@@ -28,30 +28,25 @@ var spotify = new Spotify(keys.spotify);
 // Function for running a Spotify search
 var getMeSpotify = function(songName) {
 
-  if (songName === undefined) {
+  if (songName === "") {
     songName = "Wham Bam Shang-A-Lang";
   }
 
   spotify.search({ type: 'track', query: songName, limit: 1 })
   .then(function(response) {
-    console.log(response.tracks.items[0].artists[0].name);
-    console.log(response.tracks.items[0].name);
-    console.log(response.tracks.items[0].external_urls.spotify);
-    console.log(response.tracks.items[0].album.name);
+    console.log("Artist: " + response.tracks.items[0].artists[0].name);
+    console.log("Song Title: " + response.tracks.items[0].name);
+    console.log("Preview: " + response.tracks.items[0].external_urls.spotify);
+    console.log("Album: " + response.tracks.items[0].album.name);
   })
   .catch(function(err) {
-    console.log(err);
+    console.log("x");
   });
 
 };
 
 // Function for concert search
 var getMyBands = function(artist) {
-
-  // if (artist === undefined) {
-  //   console.log("No results found for " + artist);
-  //   return;
-  // }
 
   var queryUrl = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
 
@@ -77,13 +72,13 @@ var getMyBands = function(artist) {
 
         var newDate = moment(date).format("MM/DD/YYYY")
 
-        console.log(name);
-        console.log(location);
-        console.log(newDate);
+        console.log("Venue: " + name);
+        console.log("Venue Location: " + location);
+        console.log("Event Date: " + newDate);
         console.log("===================");
       }
     }).catch(function(err) {
-      console.log(err);
+      console.log("No results found. " + artist);
     });
 
 };
@@ -91,7 +86,7 @@ var getMyBands = function(artist) {
 // Function for running a Movie Search
 var getMeMovie = function(movieName) {
     
-  if (movieName === undefined) {
+  if (movieName === "") {
     movieName = "The Mask";
   }
 
@@ -101,17 +96,17 @@ var getMeMovie = function(movieName) {
     function(response) {
       var jsonData = response.data;
 
-      console.log(jsonData.Title)
-      console.log(jsonData.Year)
-      console.log(jsonData.Ratings[0].Value)
-      console.log(jsonData.Ratings[1].Value)
-      console.log(jsonData.Country)
-      console.log(jsonData.Language)
-      console.log(jsonData.Plot)
-      console.log(jsonData.Actors)
+      console.log("Movie Title: " + jsonData.Title)
+      console.log("Release Year: " + jsonData.Year)
+      console.log("IMDB Rating: " + jsonData.Ratings[0].Value)
+      console.log("Rotten Tomatoes Rating: " + jsonData.Ratings[1].Value)
+      console.log("Produced in: " + jsonData.Country)
+      console.log("Language: " + jsonData.Language)
+      console.log("Plot: " + jsonData.Plot)
+      console.log("Actors: " + jsonData.Actors)
     }
   ).catch(function(err) {
-    console.log(err);
+    console.log("x");
   });
 
 };
@@ -138,9 +133,6 @@ var doWhatItSays = function() {
 // Function for determining which command is executed
 var pick = function(command, commandData) {
 
-  command = process.argv[2];
-  commandData = process.argv[3];
-
     switch(command) {
       case 'spotify-this-song':
         getMeSpotify(commandData);
@@ -155,7 +147,7 @@ var pick = function(command, commandData) {
         doWhatItSays();
         break;
       default:
-        console.log("Woah man, somethin' aint right here");
+        console.log("Try again Mr. Anderson.");
     }
  
 };
