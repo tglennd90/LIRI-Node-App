@@ -43,7 +43,7 @@ Node.js Homework Assignment
 
     Video Demonstration: https://drive.google.com/file/d/1MWkuWMWUH6F0sVUi3ToRsK_YifhdBxOD/view
 
-    ![do-what-it-says](/img1.png)
+    ![do-what-it-says](img1.png)
     ![Alt img](/img2.png?raw=true)
     ![Alt img](/img3.png?raw=true)
     ![Alt img](/img4.png?raw=true)
