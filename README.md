@@ -29,7 +29,7 @@ Node.js Homework Assignment
 
 2.Give start-to-finish instructions on how to run the app
 
-    Run this/these commands in your node terminal:
+    Run one of these commands in your node terminal:
 
         node liri.js <a || b || c || d> <your choice>
             *** If d, omit <your choice> ***
@@ -43,10 +43,7 @@ Node.js Homework Assignment
 
     Video Demonstration: https://drive.google.com/file/d/1MWkuWMWUH6F0sVUi3ToRsK_YifhdBxOD/view
 
-    ![do-what-it-says](img1.png)
-    ![Alt img](/img2.png?raw=true)
-    ![Alt img](/img3.png?raw=true)
-    ![Alt img](/img4.png?raw=true)
+    Also, the img files that are saved to the repo are screenshots of the app if you prefer that method.
 
 
 4.Clearly list the technologies used in the app
