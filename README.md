@@ -43,7 +43,7 @@ Node.js Homework Assignment
 
     Video Demonstration: https://drive.google.com/file/d/1MWkuWMWUH6F0sVUi3ToRsK_YifhdBxOD/view
 
-    ![alt text](https://raw.githubusercontent.com/tglennd90/LIRI-Node-App/img1.png)
+    ![Alt text](/img1.png?raw=true "do-what-it-says")
     ![Alt img](/img2.png?raw=true)
     ![Alt img](/img3.png?raw=true)
     ![Alt img](/img4.png?raw=true)
